@@ -2,7 +2,7 @@
 
 ## Summary
 
-Hotelier is an online stay rental application developed using React and Spring Boot, offering streamlined housing rental management services and features including uploads, deletions, searches, and reservations. 
+Hotelier is an online stay rental application developed using Spring Boot, offering streamlined housing rental management services and features including uploads, deletions, searches, and reservations. 
 
 The app uses Hibernate, Google Cloud Storage, and ElasticSearch for efficient data storage and retrieval. 
 
@@ -12,52 +12,54 @@ We leverage Elasticsearch for both its powerful data retrieval and analysis capa
 
 ## Running the app
 Download the application to your machine. 
-Update the items in `java/com/tpd/staybooking/resources folder` to match your settings for databases, instances, etc. 
-Run the StaybookingApplication.java file. 
+
+Update the items in `java/com/tpd/staybooking/resources` folder to match your settings for databases, instances, etc. 
+
+Run the `StaybookingApplication.java` file. 
 
 ## API Routes
 
-POST /authenticate/guest
+POST `/authenticate/guest`
 
 Authenticate the user as a guest
 
-POST /authenticate/host
+POST `/authenticate/host`
 
 Authenticate the user as a host
 
-GET /reservations
+GET `/reservations`
 
 Get a list by guest of all the reservations. 
 
-POST /reservations
+POST `/reservations`
 
 Add a reservation to the guest's reservations. 
 
-DELETE /reservations/{reservationId}
+DELETE `/reservations/{reservationId}`
 
 Delete the reservation by reservationId
 
-GET /search
+GET `/search`
 
 Return a list of stays based on various parameters: guest number, check-in date, checkout date, location in lat, long, and distance.  
 
-GET /stays
+GET `/stays`
 
 Return a list of stays by the authenticated user. 
 
-GET /stays/{stayId}
+GET `/stays/{stayId}`
 
 Retrieve specific stay information by stayId. 
 
-POST /stays
+POST `/stays`
 
 Add a stay for users to use. 
 
-DELETE /stays/{stayId}
+DELETE `/stays/{stayId}`
 
 Remove a stay from the stay inventory. 
 
-GET /stays/reservations/{stayId}
+GET `/stays/reservations/{stayId}`
 
 Get all reservations for a specific stayId. 
 
