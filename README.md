@@ -18,36 +18,47 @@ Run the StaybookingApplication.java file.
 ## API Routes
 
 POST /authenticate/guest
+
 Authenticate the user as a guest
 
 POST /authenticate/host
+
 Authenticate the user as a host
 
 GET /reservations
+
 Get a list by guest of all the reservations. 
 
 POST /reservations
+
 Add a reservation to the guest's reservations. 
 
 DELETE /reservations/{reservationId}
+
 Delete the reservation by reservationId
 
 GET /search
+
 Return a list of stays based on various parameters: guest number, check-in date, checkout date, location in lat, long, and distance.  
 
 GET /stays
+
 Return a list of stays by the authenticated user. 
 
 GET /stays/{stayId}
+
 Retrieve specific stay information by stayId. 
 
 POST /stays
+
 Add a stay for users to use. 
 
 DELETE /stays/{stayId}
+
 Remove a stay from the stay inventory. 
 
 GET /stays/reservations/{stayId}
+
 Get all reservations for a specific stayId. 
 
 ## Authentication
