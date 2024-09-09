@@ -1,5 +1,5 @@
 # Hotelier
-![Error loading](./assets/img_mint.jpg)
+![Error loading](./assets/cover.jpg)
 
 ## Summary
 
