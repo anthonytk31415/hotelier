@@ -4,20 +4,23 @@
 
 Hotelier is an online stay rental application developed using Spring Boot, offering streamlined housing rental management services and features including uploads, deletions, searches, and reservations. 
 
-The app uses Hibernate, Google Cloud Storage, and ElasticSearch for efficient data storage and retrieval. 
+This app is for two types of customers: 
+1) Hotel stay managers (hoteliers), who want to offer their hotel rental spot to potential customers
+2) Stay seekers, who want to search, reserve, and stay at a hotel rental spot. 
 
-Hotelier also implements advanced security measures with token-based authentication and role-based access control. 
+Features of the app: 
+- The app uses Hibernate, Google Cloud Storage, and ElasticSearch for efficient geohashing-based data storage and retrieval. 
+- Hotelier also implements advanced security measures with token-based authentication and role-based access control. 
+- 2-sided transactions from hotel managers and guests. 
 
-We leverage Elasticsearch for both its powerful data retrieval and analysis capabilities as well as its geo-indexing features, which makes it convenient to index locations. for the search functions. 
-
-## Running the app
+## Running Hotelier
 Download the application to your machine. 
 
 Update the items in `java/com/tpd/staybooking/resources` folder to match your settings for databases, instances, etc. 
 
 Run the `StaybookingApplication.java` file. 
 
-## API Routes
+## A Tour of the API Services
 
 POST `/authenticate/guest`
 
@@ -105,16 +108,16 @@ What we use:
 - CORS filters and JWT filters to ensure requests are protected and authenticated, 
 - See the filters section for more detail. 
 
-# Some construction background
+# Construction Background and Considerations
 
-## Why we use ElasticSearch for our data store: 
+## Why ElasticSearch for our data store: Geohashing 
 Mainly we use ElasticSearch for geohashing with Google Maps for its spatial indexing and fast querying capabilities. Driven by: 
 - Geohashing Efficiency: allows spatial data to be grouped into areas for faster searching. We'll use this to search in an area for our hotel stays. 
 - Efficient Geospatial Queries: e.g distance queries (e.g., finding all points within a radius) and bounding box queries (e.g., finding points within a rectangular area). 
 - Scalability: we can handle large-scale datasets.
 - Real-time Search: can be used interactive maps (e.g. pan or zoom in, return points of interest)
 
-## Hibernate is a natural fit for ORM using ElasticSearch
+## We use Hibernate for ORM using ElasticSearch
 Key features include:
 - ORM: Hibernate maps Java classes to database tables and Java object properties to columns. 
 - Automatic SQL Generation
@@ -124,7 +127,7 @@ Key features include:
 - Lazy Loading
 - Database Independence: abstracts away the specific SQL dialects of different databases. 
 
-## Geospatial Use cases: 
+## Geospatial Use Cases: 
 - search by proximity 
 - map based listings
 - distance filter based search 
