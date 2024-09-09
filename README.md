@@ -65,17 +65,16 @@ Get all reservations for a specific stayId.
 
 ## Authentication
 The AuthenticationService class is responsible for authenticating users and generating JWT tokens upon successful authentication. 
-
-Users need to be registered before authentication can happen, handled by the RegisterService. 
+User Flow: 
+- Users need to be registered 
+- Then, authentication can happen, handled by the RegisterService. 
 
 Below is a detailed breakdown of how it performs authentication:
 
 ### Authentication Process: 
-The authenticate method takes a User object and a UserRole enum as parameters.
-
-It attempts to authenticate the user using the AuthenticationManager. This is done by creating an UsernamePasswordAuthenticationToken with the username and password from the User object.
-
-The authenticationManager.authenticate method performs the actual authentication. If the credentials are invalid or the user does not exist, an AuthenticationException will be thrown.
+- The authenticate method takes a User object and a UserRole enum as parameters.
+- It attempts to authenticate the user using the AuthenticationManager. This is done by creating an UsernamePasswordAuthenticationToken with the username and password from the User object.
+- The authenticationManager.authenticate method performs the actual authentication. If the credentials are invalid or the user does not exist, an AuthenticationException will be thrown.
 
 ### Role Validation:
 
@@ -94,12 +93,41 @@ Finally, the method returns a Token object containing the generated JWT token.
 
 
 ## Geocoding Service 
-The GeoCodingService class is responsible for converting an address into geographic coordinates (latitude and longitude) using the Google Maps Geocoding API. It then creates and returns a Location object that includes these coordinates.
-
-We use this class to provide a clean interface for converting addresses to geographic coordinates, with appropriate error handling for common issues encountered when working with external APIs.
+What does it do: 
+- convert geographic coordinates (lat, long) using the Google Maps Geocoding API, to a Location object.
+Why use this: 
+- clean interface for converting addresses to geographic coordinates
+- out of the box error handling
 
 
 ## Security 
-The app uses CORS filters and JWT filters to ensure requests are protected and authenticated, respectively. See the filters section for more detail. 
+What we use: 
+- CORS filters and JWT filters to ensure requests are protected and authenticated, 
+- See the filters section for more detail. 
 
+# Some construction background
 
+## Why we use ElasticSearch for our data store: 
+Mainly we use ElasticSearch for geohashing with Google Maps for its spatial indexing and fast querying capabilities. Driven by: 
+- Geohashing Efficiency: allows spatial data to be grouped into areas for faster searching. We'll use this to search in an area for our hotel stays. 
+- Efficient Geospatial Queries: e.g distance queries (e.g., finding all points within a radius) and bounding box queries (e.g., finding points within a rectangular area). 
+- Scalability: we can handle large-scale datasets.
+- Real-time Search: can be used interactive maps (e.g. pan or zoom in, return points of interest)
+
+## Hibernate is a natural fit for ORM using ElasticSearch
+Key features include:
+- ORM: Hibernate maps Java classes to database tables and Java object properties to columns. 
+- Automatic SQL Generation
+- HQL (Hibernate Query Language): works with Java objects rather than database tables. 
+- Caching: has built-in support for first-level and second-level caching. 
+- Transaction Management
+- Lazy Loading
+- Database Independence: abstracts away the specific SQL dialects of different databases. 
+
+## Geospatial Use cases: 
+- search by proximity 
+- map based listings
+- distance filter based search 
+- route based stays (TBD)
+- price based stays in a location (TBD)
+- local area recommendations (TBD)
