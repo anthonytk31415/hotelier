@@ -157,9 +157,11 @@ Handles HTTP requests and responses
 
 2. Security & Filters Layer
 
+```
 /filter
 ├── JwtFilter     # JWT authentication filter
 └── CorsFilter    # Cross-Origin Resource Sharing configuration
+```
 
 Intercepts incoming requests
 - Handles authentication/authorization
@@ -168,9 +170,11 @@ Intercepts incoming requests
 
 3. Service Layer (Business Logic)
 
+```
 /service
 ├── RegisterService    # User registration business logic
 └── StayService       # Stay/booking management logic
+```
 
 Implements business logic
 - Orchestrates operations between different components
@@ -179,11 +183,13 @@ Implements business logic
 
 4. Repository Layer (Data Access)
 
+```
 /repository
 ├── ReservationRepository           # Reservation data access
 ├── LocationRepository             # Location data access
 ├── CustomLocationRepository       # Custom location query interface
 └── CustomLocationRepositoryImpl   # Implementation of custom queries
+```
 
 Interfaces with the database
 - Handles CRUD operations
@@ -194,10 +200,12 @@ Interfaces with the database
 
 5. Model Layer (Domain Objects)
 
+```
 /model
 ├── User      # User entity
 ├── UserRole  # Enum for user roles
 └── Stay      # Stay/property entity
+```
 
 Represents database entities
 - Defines data structures
@@ -205,8 +213,10 @@ Represents database entities
 
 6. Configuration Layer
 
+```
 /config
 └── SecurityConfig    # Security configurations
+```
 
 Configures Spring components
 - Sets up security rules
@@ -214,8 +224,10 @@ Configures Spring components
 
 7. Exception Handling
 
+```
 /exception
 └── CustomExceptions  # Application-specific exceptions
+```
 
 Defines custom exceptions
 - Handles error scenarios
@@ -224,8 +236,10 @@ Defines custom exceptions
 
 8. Utilities
 
+```
 /util
 └── JwtUtil  # JWT token utilities
+```
 
 Helper classes
 - Common utilities
@@ -244,12 +258,14 @@ Database
 
 Registration Flow Example:
 
+```
 graph LR
     A[Client] --> B[RegisterController]
     B --> C[JwtFilter]
     C --> D[RegisterService]
     D --> E[UserRepository]
     E --> F[Database]
+```
 
 1. Client sends registration request
 2. RegisterController receives request
@@ -259,11 +275,12 @@ graph LR
 
 Exception Handling Flow:
 
+```
 graph LR
     A[Any Layer] --> B[CustomException]
     B --> C[CustomExceptionHandler]
     C --> D[Client Response]
-
+```
     
 ## Key Features
 
