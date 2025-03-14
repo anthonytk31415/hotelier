@@ -126,7 +126,8 @@ Key features include:
 - Caching: has built-in support for first-level and second-level caching. 
 - Transaction Management
 - Lazy Loading
-- Database Independence: abstracts away the specific SQL dialects of different databases. 
+- Database Independence: abstracts away the specific SQL dialects of different databases.
+- 
 
 ## Geospatial Use Cases: 
 - search by proximity 
@@ -135,3 +136,147 @@ Key features include:
 - route based stays (TBD)
 - price based stays in a location (TBD)
 - local area recommendations (TBD)
+
+
+# System Design Overview
+
+Below is a hierarchical breakdown of the system architecture, using the Spring Boot application structure, using a MVC Pattern:
+
+1. Presentation Layer (Controllers)
+
+/controller
+├── RegisterController      # Handles user registration endpoints
+└── CustomExceptionHandler  # Global exception handling
+
+Handles HTTP requests and responses
+- Maps REST endpoints to service methods
+- Validates incoming requests
+- Returns appropriate responses/errors
+
+2. Security & Filters Layer
+
+/filter
+├── JwtFilter     # JWT authentication filter
+└── CorsFilter    # Cross-Origin Resource Sharing configuration
+
+Intercepts incoming requests
+- Handles authentication/authorization
+- Manages CORS policies
+- Processes JWT tokens
+
+3. Service Layer (Business Logic)
+
+/service
+├── RegisterService    # User registration business logic
+└── StayService       # Stay/booking management logic
+
+Implements business logic
+- Orchestrates operations between different components
+- Handles transactions
+- Performs data validations
+
+4. Repository Layer (Data Access)
+
+/repository
+├── ReservationRepository           # Reservation data access
+├── LocationRepository             # Location data access
+├── CustomLocationRepository       # Custom location query interface
+└── CustomLocationRepositoryImpl   # Implementation of custom queries
+
+Interfaces with the database
+- Handles CRUD operations
+- Implements custom queries
+- Uses JPA/Hibernate
+
+
+
+5. Model Layer (Domain Objects)
+
+/model
+├── User      # User entity
+├── UserRole  # Enum for user roles
+└── Stay      # Stay/property entity
+
+Represents database entities
+- Defines data structures
+- Contains business objects
+
+6. Configuration Layer
+
+/config
+└── SecurityConfig    # Security configurations
+
+Configures Spring components
+- Sets up security rules
+- Manages beans and dependencies
+
+7. Exception Handling
+
+/exception
+└── CustomExceptions  # Application-specific exceptions
+
+Defines custom exceptions
+- Handles error scenarios
+- Provides error responses
+
+
+8. Utilities
+
+/util
+└── JwtUtil  # JWT token utilities
+
+Helper classes
+- Common utilities
+- Shared functions
+
+### Data Flow
+Client Request →
+Filters (JWT/CORS) →
+Controllers →
+Services →
+Repositories →
+Database
+
+
+### Key Interactions
+
+Registration Flow Example:
+
+graph LR
+    A[Client] --> B[RegisterController]
+    B --> C[JwtFilter]
+    C --> D[RegisterService]
+    D --> E[UserRepository]
+    E --> F[Database]
+
+1. Client sends registration request
+2. RegisterController receives request
+3. JwtFilter validates token (if required)
+4. RegisterService processes registration
+5. UserRepository saves to database
+
+Exception Handling Flow:
+
+graph LR
+    A[Any Layer] --> B[CustomException]
+    B --> C[CustomExceptionHandler]
+    C --> D[Client Response]
+
+    
+## Key Features
+
+- JWT-based authentication
+- Role-based authorization (GUEST/HOST)
+- Custom location queries
+- Reservation management
+- Exception handling
+- CORS support
+
+## Technologies Used
+
+- Spring Boot
+- Spring Security
+- Spring Data JPA
+- JWT
+- Hibernate
+- RESTful APIs
