@@ -75,12 +75,12 @@ User Flow:
 
 Below is a detailed breakdown of how it performs authentication:
 
-### Authentication Process: 
+## Authentication Process: 
 - The authenticate method takes a User object and a UserRole enum as parameters.
 - It attempts to authenticate the user using the AuthenticationManager. This is done by creating an UsernamePasswordAuthenticationToken with the username and password from the User object.
 - The authenticationManager.authenticate method performs the actual authentication. If the credentials are invalid or the user does not exist, an AuthenticationException will be thrown.
 
-### Role Validation:
+## Role Validation:
 
 After successful authentication, the method checks if the authenticated user has the required role.
 
@@ -88,7 +88,7 @@ It verifies this by checking if the authorities (roles) of the Authentication ob
 
 If the user does not have the required role or the Authentication object is null or not authenticated, it throws the UserNotExistException.
 
-### Token Generation:
+## Token Generation:
 If the authentication is successful and the role check passes, the method generates a JWT token using the JwtUtil class.
 
 The token is created with the authenticated user's username.
@@ -153,7 +153,7 @@ Below is a hierarchical breakdown of the system architecture, using the Spring B
 8. Utilities
 
 
-###1. Presentation Layer (Controllers)
+##1. Presentation Layer (Controllers)
 
 ```
 /controller
@@ -166,7 +166,7 @@ Handles HTTP requests and responses
 - Validates incoming requests
 - Returns appropriate responses/errors
 
-###2. Security & Filters Layer
+##2. Security & Filters Layer
 
 ```
 /filter
@@ -179,7 +179,7 @@ Intercepts incoming requests
 - Manages CORS policies
 - Processes JWT tokens
 
-###3. Service Layer (Business Logic)
+##3. Service Layer (Business Logic)
 
 ```
 /service
@@ -192,7 +192,7 @@ Implements business logic
 - Handles transactions
 - Performs data validations
 
-###4. Repository Layer (Data Access)
+##4. Repository Layer (Data Access)
 
 ```
 /repository
@@ -209,7 +209,7 @@ Interfaces with the database
 
 
 
-###5. Model Layer (Domain Objects)
+##5. Model Layer (Domain Objects)
 
 ```
 /model
@@ -222,7 +222,7 @@ Represents database entities
 - Defines data structures
 - Contains business objects
 
-###6. Configuration Layer
+##6. Configuration Layer
 
 ```
 /config
@@ -233,7 +233,7 @@ Configures Spring components
 - Sets up security rules
 - Manages beans and dependencies
 
-###7. Exception Handling
+##7. Exception Handling
 
 ```
 /exception
@@ -245,7 +245,7 @@ Defines custom exceptions
 - Provides error responses
 
 
-###8. Utilities
+##8. Utilities
 
 ```
 /util
@@ -256,7 +256,7 @@ Helper classes
 - Common utilities
 - Shared functions
 
-### Data Flow
+## Data Flow
 Client Request →
 Filters (JWT/CORS) →
 Controllers →
@@ -265,7 +265,7 @@ Repositories →
 Database
 
 
-### Key Interactions
+## Key Interactions
 
 Registration Flow Example:
 
