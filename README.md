@@ -142,7 +142,18 @@ Key features include:
 
 Below is a hierarchical breakdown of the system architecture, using the Spring Boot application structure, using a MVC Pattern:
 
+
 1. Presentation Layer (Controllers)
+2. Security & Filters Layer
+3. Service Layer (Business Logic)
+4. Repository Layer (Data Access)
+5. Model Layer (Domain Objects)
+6. Configuration Layer
+7. Exception Handling
+8. Utilities
+
+
+####1. Presentation Layer (Controllers)
 
 ```
 /controller
@@ -155,7 +166,7 @@ Handles HTTP requests and responses
 - Validates incoming requests
 - Returns appropriate responses/errors
 
-2. Security & Filters Layer
+####2. Security & Filters Layer
 
 ```
 /filter
@@ -168,7 +179,7 @@ Intercepts incoming requests
 - Manages CORS policies
 - Processes JWT tokens
 
-3. Service Layer (Business Logic)
+####3. Service Layer (Business Logic)
 
 ```
 /service
@@ -181,7 +192,7 @@ Implements business logic
 - Handles transactions
 - Performs data validations
 
-4. Repository Layer (Data Access)
+####4. Repository Layer (Data Access)
 
 ```
 /repository
@@ -198,7 +209,7 @@ Interfaces with the database
 
 
 
-5. Model Layer (Domain Objects)
+####5. Model Layer (Domain Objects)
 
 ```
 /model
@@ -211,7 +222,7 @@ Represents database entities
 - Defines data structures
 - Contains business objects
 
-6. Configuration Layer
+####6. Configuration Layer
 
 ```
 /config
@@ -222,7 +233,7 @@ Configures Spring components
 - Sets up security rules
 - Manages beans and dependencies
 
-7. Exception Handling
+####7. Exception Handling
 
 ```
 /exception
@@ -234,7 +245,7 @@ Defines custom exceptions
 - Provides error responses
 
 
-8. Utilities
+####8. Utilities
 
 ```
 /util
