@@ -144,9 +144,11 @@ Below is a hierarchical breakdown of the system architecture, using the Spring B
 
 1. Presentation Layer (Controllers)
 
+```
 /controller
 ├── RegisterController      # Handles user registration endpoints
 └── CustomExceptionHandler  # Global exception handling
+```
 
 Handles HTTP requests and responses
 - Maps REST endpoints to service methods
